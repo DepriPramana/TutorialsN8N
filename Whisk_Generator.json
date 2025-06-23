@@ -1,0 +1,806 @@
+{
+  "name": "Whisk Generator",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        160,
+        220
+      ],
+      "id": "0ef4262c-0862-479b-adb7-21a73c91e639",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagePanels[0].generatedImages[0].encodedImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        20
+      ],
+      "id": "3e9afe2d-4c3f-4bc6-9f70-a29b4b9c17a3",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Pixel",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "Prosess"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        660,
+        0
+      ],
+      "id": "c19a892c-8b2f-4587-8be5-b1dea7e415f8",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        880,
+        0
+      ],
+      "id": "d5ea72d7-1891-4f81-b939-8fc426fa2c71",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.uuid }}_{{ $('Google Sheets').item.json.Name }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1HuvEVkPSGfMayauHHCW_T6ApLj8UQTrT",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1HuvEVkPSGfMayauHHCW_T6ApLj8UQTrT"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1660,
+        20
+      ],
+      "id": "7436a999-5f5e-40ab-8f64-7d68f4b06cd7",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Xx50r7O3J3K8h9uy",
+          "name": "Google account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "uuid"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        20
+      ],
+      "id": "fea76bfa-9612-4603-93cd-020548c09206",
+      "name": "Crypto"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Pixel",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Google Sheets').item.json.row_number }}",
+            "Status": "Done"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1860,
+        20
+      ],
+      "id": "b7cb93e7-e98c-4668-8494-14f0a510efbe",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2060,
+        20
+      ],
+      "id": "e2785cfa-96be-4250-b93e-46a5b5296417",
+      "name": "Wait",
+      "webhookId": "1bb6a16f-0080-4d87-9e71-fd5913092180"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/whisk:generateImage",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"clientContext\": {\n    \"workflowId\": \"{{ $('On form submission').item.json.WorkflowId }}\",\n    \"tool\": \"BACKBONE\",\n    \"sessionId\": \"{{ $('On form submission').item.json.SessionId }}\"\n  },\n  \"imageModelSettings\": {\n    \"imageModel\": \"IMAGEN_3_5\",\n    \"aspectRatio\": \"IMAGE_ASPECT_RATIO_LANDSCAPE\"\n  },\n  \"prompt\": \"{{ $json.Prompts }}\",\n  \"mediaCategory\": \"MEDIA_CATEGORY_BOARD\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1080,
+        20
+      ],
+      "id": "782ac962-0d00-45b9-9eba-ab654cd94d20",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "3iNRXZWsZh7xV5jJ",
+          "name": "Bearer Whisk"
+        },
+        "httpHeaderAuth": {
+          "id": "usoy0dWOayCJ863i",
+          "name": "Header Auth account Whisk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Whisk Image Generator",
+        "height": 320,
+        "width": 1440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -60
+      ],
+      "id": "184d9f3b-bbd2-4c43-b262-195675fa910a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagePanels[0].generatedImages[0].encodedImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        360
+      ],
+      "id": "c8dff634-c195-4e16-a003-81b7c14741b1",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        880,
+        340
+      ],
+      "id": "1fff090b-bc3d-4fb7-b8c7-e4bc27085b8e",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.uuid }}_{{ $('Google Sheets3').item.json.Name }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ZBy-nU2sG-rW31jhLrximbBNUAPWISjs",
+          "mode": "list",
+          "cachedResultName": "Abstract",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ZBy-nU2sG-rW31jhLrximbBNUAPWISjs"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1660,
+        360
+      ],
+      "id": "be0b8416-f796-4944-a647-95a9b1a4f3a9",
+      "name": "Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Xx50r7O3J3K8h9uy",
+          "name": "Google account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "uuid"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        360
+      ],
+      "id": "4233e0d8-918b-43fb-9d77-e4d573c39057",
+      "name": "Crypto1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 791638154,
+          "mode": "list",
+          "cachedResultName": "Abstract",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=791638154"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Google Sheets3').item.json.row_number }}",
+            "Status": "Done"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1860,
+        300
+      ],
+      "id": "fa5385b5-9bb9-47ab-9ac8-169e8706f36a",
+      "name": "Google Sheets2",
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2060,
+        360
+      ],
+      "id": "0b1d34de-e2be-4eec-a5d7-d10caab4da5c",
+      "name": "Wait1",
+      "webhookId": "1bb6a16f-0080-4d87-9e71-fd5913092180"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/whisk:generateImage",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"clientContext\": {\n    \"workflowId\": \"{{ $('Google Sheets4').item.json.WorkflowID }}\",\n    \"tool\": \"BACKBONE\",\n    \"sessionId\": \"{{ $('Google Sheets4').item.json.SessionID }}\"\n  },\n  \"imageModelSettings\": {\n    \"imageModel\": \"IMAGEN_3_5\",\n    \"aspectRatio\": \"IMAGE_ASPECT_RATIO_LANDSCAPE\"\n  },\n  \"prompt\": \"{{ $json.Prompts }}\",\n  \"mediaCategory\": \"MEDIA_CATEGORY_BOARD\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1080,
+        360
+      ],
+      "id": "2925ba5f-43df-46f2-97ed-f4f689d8126e",
+      "name": "HTTP Request",
+      "retryOnFail": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "usoy0dWOayCJ863i",
+          "name": "Header Auth account Whisk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Whisk Image Generator",
+        "height": 320,
+        "width": 1440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        780,
+        280
+      ],
+      "id": "ddfeb9be-c8d6-4210-83ae-4e3cf34c30ea",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 791638154,
+          "mode": "list",
+          "cachedResultName": "Abstract",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=791638154"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "Prosess"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        660,
+        340
+      ],
+      "id": "6d164334-c89e-4175-8de9-e5f833ecba12",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2060,
+        600
+      ],
+      "id": "84d03764-1796-4e2d-a561-5eaf0184ed34",
+      "name": "Wait2",
+      "webhookId": "2be0471a-aeef-4b4d-ac48-15a04ec9a1ab"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1342851711,
+          "mode": "list",
+          "cachedResultName": "Session",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=1342851711"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        360,
+        220
+      ],
+      "id": "d7135d4a-bd6e-4f99-84f6-6a9bd043dd54",
+      "name": "Google Sheets4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Crypto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto1": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "979a0bdf-69cd-4ef1-82d5-175ecd2b303a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4aa16531e9d305aaa5429dff03d347695137329f26cee3bb699158c2b2d0c563"
+  },
+  "id": "rHTENSmVGmPwpKUB",
+  "tags": []
+}
