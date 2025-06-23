@@ -1,0 +1,744 @@
+{
+  "name": "Whisk Generator",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        140,
+        220
+      ],
+      "id": "0ef4262c-0862-479b-adb7-21a73c91e639",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagePanels[0].generatedImages[0].encodedImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        240
+      ],
+      "id": "c8dff634-c195-4e16-a003-81b7c14741b1",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        800,
+        220
+      ],
+      "id": "1fff090b-bc3d-4fb7-b8c7-e4bc27085b8e",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.uuid }}_{{ $('Google Sheets3').item.json.Name }}_up",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15I5d0a74W5dqx8Y1AMDxnwUmcFEvcMWZ",
+          "mode": "list",
+          "cachedResultName": "upsclaler",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15I5d0a74W5dqx8Y1AMDxnwUmcFEvcMWZ"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1800,
+        240
+      ],
+      "id": "be0b8416-f796-4944-a647-95a9b1a4f3a9",
+      "name": "Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Xx50r7O3J3K8h9uy",
+          "name": "Google account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "uuid"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        240
+      ],
+      "id": "4233e0d8-918b-43fb-9d77-e4d573c39057",
+      "name": "Crypto1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 791638154,
+          "mode": "list",
+          "cachedResultName": "Abstract",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=791638154"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Google Sheets3').item.json.row_number }}",
+            "Status": "Done"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1960,
+        240
+      ],
+      "id": "fa5385b5-9bb9-47ab-9ac8-169e8706f36a",
+      "name": "Google Sheets2",
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2120,
+        240
+      ],
+      "id": "0b1d34de-e2be-4eec-a5d7-d10caab4da5c",
+      "name": "Wait1",
+      "webhookId": "1bb6a16f-0080-4d87-9e71-fd5913092180"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/whisk:generateImage",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"clientContext\": {\n    \"workflowId\": \"{{ $('Google Sheets4').item.json.WorkflowID }}\",\n    \"tool\": \"BACKBONE\",\n    \"sessionId\": \"{{ $('Google Sheets4').item.json.SessionID }}\"\n  },\n  \"imageModelSettings\": {\n    \"imageModel\": \"IMAGEN_3_5\",\n    \"aspectRatio\": \"IMAGE_ASPECT_RATIO_LANDSCAPE\"\n  },\n  \"prompt\": \"{{ $json.Prompts }}\",\n  \"mediaCategory\": \"MEDIA_CATEGORY_BOARD\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        240
+      ],
+      "id": "2925ba5f-43df-46f2-97ed-f4f689d8126e",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "usoy0dWOayCJ863i",
+          "name": "Header Auth account Whisk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Whisk Image Generator",
+        "height": 320,
+        "width": 840
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        520,
+        160
+      ],
+      "id": "ddfeb9be-c8d6-4210-83ae-4e3cf34c30ea",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 791638154,
+          "mode": "list",
+          "cachedResultName": "Abstract",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=791638154"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "Prosess"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        580,
+        220
+      ],
+      "id": "6d164334-c89e-4175-8de9-e5f833ecba12",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c",
+          "mode": "list",
+          "cachedResultName": "whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1342851711,
+          "mode": "list",
+          "cachedResultName": "Session",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pDjLLYjxlXygwiuEY3CMSgaSW30zoD3xGUN8u0xf13c/edit#gid=1342851711"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        360,
+        220
+      ],
+      "id": "d7135d4a-bd6e-4f99-84f6-6a9bd043dd54",
+      "name": "Google Sheets4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fOix21dAXhJf4iJO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://get1.imglarger.com/api/UpscalerNew/CheckStatusNew",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"code\":\"{{ $('Request Upscaler').item.json.data.code }}\",\"scaleRadio\":4}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1500,
+        620
+      ],
+      "id": "1b3e0181-4d64-4021-aaf6-26ec41b703d0",
+      "name": "HTTP CheckStatus"
+    },
+    {
+      "parameters": {
+        "content": "## Image Upscaler",
+        "height": 320,
+        "width": 880
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        540
+      ],
+      "id": "d5b7506f-9014-418a-846d-4535d36395ab",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://get1.imglarger.com/api/UpscalerNew/UploadNew",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9,id;q=0.8"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Origin",
+              "value": "https://imgupscaler.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://imgupscaler.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "myfile",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "scaleRadio",
+              "value": "4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        620
+      ],
+      "id": "21c02c9b-eeb2-4477-8d6f-6248e8a12024",
+      "name": "Request Upscaler"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "13YYX_Z_JjHWFenUDOr4-tmWyleSNmDuz",
+          "mode": "id"
+        },
+        "options": {
+          "binaryPropertyName": "data"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2360,
+        760
+      ],
+      "id": "3a671b69-e320-4803-974f-d19e2045b679",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Xx50r7O3J3K8h9uy",
+          "name": "Google account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1320,
+        620
+      ],
+      "id": "71971e99-62ab-465d-a7d5-59b3262f9335",
+      "name": "Wait",
+      "webhookId": "74987e0f-1056-4735-aaed-7513bd3e096c"
+    },
+    {
+      "parameters": {
+        "content": "## Upload Image",
+        "height": 320,
+        "width": 940
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        160
+      ],
+      "id": "8109c0dd-bad2-4639-a969-c2f839fc1bf9",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('HTTP CheckStatus').item.json.data.downloadUrls[0] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9,id;q=0.8"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Host",
+              "value": "get1.imglarger.com"
+            },
+            {
+              "name": "Origin",
+              "value": "https://imgupscaler.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://imgupscaler.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "=data"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1500,
+        240
+      ],
+      "id": "457d08d2-37f1-43b9-8c92-c2dac49087a9",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac87e329-a552-48ea-a160-bb7589ceaad6",
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        620
+      ],
+      "id": "305ea2f7-9959-4222-b2e9-e46311f917f8",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Request Upscaler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto1": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP CheckStatus": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Request Upscaler": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        []
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP CheckStatus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Crypto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "835493e3-2496-40c6-8cc3-a32b10e529d0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4aa16531e9d305aaa5429dff03d347695137329f26cee3bb699158c2b2d0c563"
+  },
+  "id": "rHTENSmVGmPwpKUB",
+  "tags": []
+}
