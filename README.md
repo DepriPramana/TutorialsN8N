@@ -2,6 +2,8 @@
 
 This repository provides instructions and workflows for restoring your n8n workflows from backup files stored in GitHub, Google Drive, or another storage solution.
 
+Template Spreadsheets Prompts https://docs.google.com/spreadsheets/d/1-xP4ihuQPBkPAQP9oQcEjRU9OooX8kP4bXht1U2soXU/edit?usp=sharing
+
 ## Prerequisites
 
 - **n8n instance** (self-hosted or cloud)
