@@ -1,0 +1,2858 @@
+{
+  "name": "Bot Gambar",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1700,
+        1460
+      ],
+      "id": "020c9d5f-de12-4f7a-b0be-0489e694841a",
+      "name": "Telegram Trigger",
+      "webhookId": "9db25069-8d2a-454b-99e1-ea412161c7f4",
+      "credentials": {
+        "telegramApi": {
+          "id": "BBxSFhxTFrUi8MgY",
+          "name": "Telegram TipsUnik"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/generate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "05906dd5-bbfe-4f07-b480-9e7f88846224"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9c7ae591-4474-4683-bd3e-63fdff8564b2",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/startwhisk",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d991a79e-a107-428f-b46e-6310e1ed047e",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/config",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f8f67e19-457a-4df1-a7ae-3d8f95174ef6",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/upscale",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d576e71c-55b9-4b86-a75e-3157962554cd",
+                    "leftValue": "={{ $json.message.caption }}",
+                    "rightValue": "/upscaler",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f1ddc971-512b-449b-be4b-7845ff02da5a",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "Generate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6d88c44a-aac6-4383-ba4a-14c5f11554ab",
+                    "leftValue": "={{ $json.message.caption }}",
+                    "rightValue": "/prompt",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fafd459e-8e2c-41ca-a3e4-be69193f2dde",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1480,
+        1360
+      ],
+      "id": "de3e7e79-49b0-43ec-9a1d-c860f7cb5faa",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        260
+      ],
+      "id": "3df50c4f-d08c-4515-a5cc-93d56499a1e4",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "SVGBuXPx30PLxHpT",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1073522090,
+          "mode": "list",
+          "cachedResultName": "Prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1073522090"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Prompts": "={{ $json.Prompt }}",
+            "Status": "Prosess"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Prompts",
+              "displayName": "Prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        0,
+        200
+      ],
+      "id": "44ffdf62-cc8d-4c49-b235-083313a661df",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -220,
+        60
+      ],
+      "id": "0e99dff1-722d-4bfb-b95b-6fd566b2839d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatid }}",
+        "text": "=Successfully inserted {{ $json[\"total_inserted\"] }} items into Google Sheets!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "405355ee-ce23-4b2f-9ea9-2e3649df90ce",
+      "name": "Telegram1",
+      "webhookId": "4ad45a55-88d8-41fe-97f1-913f438747e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const count = $input.all().length;\nreturn [{ json: { total_inserted: count, chatid: $('Telegram Trigger').first().json.message.chat.id } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f6be5b8a-831a-4f95-b3d0-466187ec9d22",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagePanels[0].generatedImages[0].encodedImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -220,
+        500
+      ],
+      "id": "b124f20c-8ee6-4311-9745-82ca3e16068f",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -660,
+        660
+      ],
+      "id": "6b4b3f5a-f0a6-48c5-8b4d-be945369df83",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Get Prompts').item.json.Name }}_{{ $json.uuid }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "16bBQTzKf2cmkJNYJIe61dGBE-cmMFK6M",
+          "mode": "list",
+          "cachedResultName": "auto",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/16bBQTzKf2cmkJNYJIe61dGBE-cmMFK6M"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        220,
+        500
+      ],
+      "id": "f069af22-6eef-4cb1-9ac4-ddf67fee850f",
+      "name": "Google Drive1",
+      "retryOnFail": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "4TERrKG1sfn86r1P",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "uuid"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        0,
+        500
+      ],
+      "id": "25c7380e-1dfe-4c88-a989-87f1fd157d34",
+      "name": "Crypto1"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        680
+      ],
+      "id": "187fab08-2de9-4ccf-a6e4-1e41daf27d04",
+      "name": "Wait1",
+      "webhookId": "1bb6a16f-0080-4d87-9e71-fd5913092180"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/whisk:generateImage",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "={{ $('Get Session').item.json.Barrier }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"clientContext\": {\n    \"workflowId\": \"{{ $('Get Session').item.json.WorkflowID }}\",\n    \"tool\": \"BACKBONE\",\n    \"sessionId\": \"{{ $('Get Session').item.json.SessionID }}\"\n  },\n  \"imageModelSettings\": {\n    \"imageModel\": \"IMAGEN_3_5\",\n    \"aspectRatio\": \"IMAGE_ASPECT_RATIO_LANDSCAPE\"\n  },\n  \"prompt\": \"{{ $json.Prompts }}\",\n  \"mediaCategory\": \"MEDIA_CATEGORY_BOARD\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -440,
+        600
+      ],
+      "id": "20ceb060-8bd0-413a-b689-dfb3f65e5b07",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://get1.imglarger.com/api/UpscalerNew/CheckStatusNew",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"code\":\"{{ $('Request Upscaler').item.json.data.code }}\",\"scaleRadio\":4}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        1160
+      ],
+      "id": "6a1964ad-3148-490e-8f9b-23fa8f9691e2",
+      "name": "HTTP CheckStatus"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://get1.imglarger.com/api/UpscalerNew/UploadNew",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9,id;q=0.8"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Origin",
+              "value": "https://imgupscaler.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://imgupscaler.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "myfile",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "scaleRadio",
+              "value": "4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        1260
+      ],
+      "id": "af27fa75-e341-4e7c-8bac-9a88c5ea6020",
+      "name": "Request Upscaler"
+    },
+    {
+      "parameters": {
+        "amount": 1.3,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        1260
+      ],
+      "id": "6b5e25d1-5b3b-4e80-ab6a-d14ce9b5f27b",
+      "name": "Wait",
+      "webhookId": "74987e0f-1056-4735-aaed-7513bd3e096c"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('HTTP CheckStatus').item.json.data.downloadUrls[0] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9,id;q=0.8"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Host",
+              "value": "get1.imglarger.com"
+            },
+            {
+              "name": "Origin",
+              "value": "https://imgupscaler.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://imgupscaler.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "=data"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        1260
+      ],
+      "id": "0fd1bc42-784a-4d31-b32c-db7ab875ee19",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac87e329-a552-48ea-a160-bb7589ceaad6",
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        1260
+      ],
+      "id": "937853d2-52c2-4df8-945d-ef29876fdc2c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract data from the input string\nconst input = $input.first().json.message.text; // Replace \"PreviousNode\" with your data source node name\n\n// Parse the key-value pairs\nconst result = {};\ninput.split('\\n').forEach(line => {\n  const [key, ...valueParts] = line.split('=');\n  if (key && valueParts.length) {\n    const value = valueParts.join('=').trim();\n    result[key.trim()] = value;\n  }\n});\n\n// Format into the required JSON structure\nconst output = {\n  WorkflowID: result.WorkflowID || \"enter name WorkflowID here\",\n  SessionID: result.SessionID || \"enter SessionID here\",\n  Token: result.Token || \"enter Token here\"\n};\n\nreturn [{\n  json: output\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        1000
+      ],
+      "id": "3f09378d-65b4-4573-b6be-39d9798b497f",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1342851711,
+          "mode": "list",
+          "cachedResultName": "Session",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1342851711"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -1260,
+        660
+      ],
+      "id": "60abae9e-70f2-468d-bf19-d7b492f0e96d",
+      "name": "Get Session",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1073522090,
+          "mode": "list",
+          "cachedResultName": "Prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1073522090"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "Prosess"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -960,
+        660
+      ],
+      "id": "72c4dc3b-7293-4dd9-ae7d-2b04fda64349",
+      "name": "Get Prompts",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1342851711,
+          "mode": "list",
+          "cachedResultName": "Session",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1342851711"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "2",
+            "Barrier": "={{ $json.Token }}",
+            "SessionID": "={{ $json.SessionID }}",
+            "WorkflowID": "={{ $json.WorkflowID }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "WorkflowID",
+              "displayName": "WorkflowID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SessionID",
+              "displayName": "SessionID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Barrier",
+              "displayName": "Barrier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -660,
+        1000
+      ],
+      "id": "9ec28101-d2ed-4950-a66c-4071665d879c",
+      "name": "Update Session",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=Successfully inserted Session items into Google Sheets!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -440,
+        1000
+      ],
+      "id": "247d02c7-29f2-4c3c-9899-8133f218a31f",
+      "name": "Telegram",
+      "webhookId": "4ad45a55-88d8-41fe-97f1-913f438747e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatid }}",
+        "text": "=Successfully generated {{ $json[\"total_inserted\"] }} images into Google Drives!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -220,
+        300
+      ],
+      "id": "1ff73791-9e8f-4805-9206-da2639cccb1d",
+      "name": "Telegram2",
+      "webhookId": "4ad45a55-88d8-41fe-97f1-913f438747e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const count = $input.all().length;\nreturn [{ json: { total_inserted: count, chatid: $('Telegram Trigger').first().json.message.chat.id } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        300
+      ],
+      "id": "60db87dd-f4eb-4b5b-8f89-6358a330847d",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1073522090,
+          "mode": "list",
+          "cachedResultName": "Prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1073522090"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Get Prompts').item.json.row_number }}",
+            "Status": "Done"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        440,
+        500
+      ],
+      "id": "8bc662dd-9470-4f4e-97af-2eecaea1158c",
+      "name": "Update Status",
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagePanels[0].generatedImages[0].encodedImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        1260
+      ],
+      "id": "a88aa292-61f1-4a75-9fef-46d2c62780a5",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -440,
+        1240
+      ],
+      "id": "88c0612a-85e5-41a2-b42f-41ba4f656fd5",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Get Prompts1').item.json.Name }}_{{ $json.uuid }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "16bBQTzKf2cmkJNYJIe61dGBE-cmMFK6M",
+          "mode": "list",
+          "cachedResultName": "auto",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/16bBQTzKf2cmkJNYJIe61dGBE-cmMFK6M"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1540,
+        1260
+      ],
+      "id": "679d9a20-d8d6-46a5-b6e9-357c93dca1ba",
+      "name": "Google Drive",
+      "retryOnFail": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "4TERrKG1sfn86r1P",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "uuid"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        1260
+      ],
+      "id": "e08a2920-d962-47d8-80d6-974f73398f4b",
+      "name": "Crypto"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1980,
+        1340
+      ],
+      "id": "1df9353b-8815-4591-bdb5-fefc528eada2",
+      "name": "Wait2",
+      "webhookId": "1bb6a16f-0080-4d87-9e71-fd5913092180"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/whisk:generateImage",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "={{ $('Get Session1').item.json.Barrier }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"clientContext\": {\n    \"workflowId\": \"{{ $('Get Session1').item.json.WorkflowID }}\",\n    \"tool\": \"BACKBONE\",\n    \"sessionId\": \"{{ $('Get Session1').item.json.SessionID }}\"\n  },\n  \"imageModelSettings\": {\n    \"imageModel\": \"IMAGEN_3_5\",\n    \"aspectRatio\": \"IMAGE_ASPECT_RATIO_LANDSCAPE\"\n  },\n  \"prompt\": \"{{ $json.Prompts }}\",\n  \"mediaCategory\": \"MEDIA_CATEGORY_BOARD\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        1260
+      ],
+      "id": "1501bfa4-8f4a-4f8c-a32f-d54dcca70f66",
+      "name": "HTTP Request2",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1073522090,
+          "mode": "list",
+          "cachedResultName": "Prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1073522090"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "Prosess"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -660,
+        1240
+      ],
+      "id": "620db808-18d0-4c64-9960-f81858dfeab3",
+      "name": "Get Prompts1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatid }}",
+        "text": "=Successfully generated {{ $json[\"total_inserted\"] }} images into Google Drives!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1060
+      ],
+      "id": "2d6fa620-ff12-4f95-ab31-ab52fce365d4",
+      "name": "Telegram3",
+      "webhookId": "4ad45a55-88d8-41fe-97f1-913f438747e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const count = $input.all().length;\nreturn [{ json: { total_inserted: count, chatid: $('Telegram Trigger').first().json.message.chat.id } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        1060
+      ],
+      "id": "698f85c0-a296-4020-86da-c6149f2e6aee",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1073522090,
+          "mode": "list",
+          "cachedResultName": "Prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1073522090"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Get Prompts1').item.json.row_number }}",
+            "Status": "Done"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1760,
+        1260
+      ],
+      "id": "e2325ada-1044-4e99-8f9d-54bd2b6f01f1",
+      "name": "Update Status1",
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1342851711,
+          "mode": "list",
+          "cachedResultName": "Session",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI/edit#gid=1342851711"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -1260,
+        1260
+      ],
+      "id": "fcf66bb9-84ef-4d4d-a409-40cdf8cd7568",
+      "name": "Get Session1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZLnWliWWKU5fBLUg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Upscale prosessing",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -960,
+        1240
+      ],
+      "id": "103bad3c-f57e-4668-a32c-ef840fb38f6e",
+      "name": "Telegram4",
+      "webhookId": "298bfae7-2d15-497a-afdd-7fe48f267012",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "47afe844-e311-4cc9-81b4-fdfe78025181",
+              "name": "message.text",
+              "value": "={{ $('Telegram Trigger').item.json.message.text.split(' ').slice(1).join(' ') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1260,
+        1000
+      ],
+      "id": "ea1ff0d6-2d6f-47a4-bf75-f73968e6ad73",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=Successfully generate prompts!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -660,
+        60
+      ],
+      "id": "72f5973e-8558-4849-b376-1410d92665ce",
+      "name": "Telegram5",
+      "webhookId": "4ad45a55-88d8-41fe-97f1-913f438747e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=Successfully generated images {{ $('Get Prompts').item.json.Name }} into Google Drives!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        660,
+        500
+      ],
+      "id": "50080f89-1ace-43eb-b327-54d2c0d7b5de",
+      "name": "Telegram6",
+      "webhookId": "4ad45a55-88d8-41fe-97f1-913f438747e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Heres the instruction:\nGenerate {{ $json.message.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are an image prompt generator. Your task is to create concise, highly descriptive prompts for photorealistic image generation based ONLY on the following specification...\n\n### **IMPORTANT INSTRUCTIONS:**  \n\n- **Always** incorporate the given style into the visual description.  \n- **Never** include text in the images.\n- **Never** exceed 240 characters in your prompt.  \n- **Keep images visually compelling** – Instead of basic or static representations, focus on **dynamic compositions, dramatic angles, striking lighting, immersive textures, and environmental storytelling**.  \n- **Small subjects should have compelling micro-world narratives** – If the subject is small (e.g., a drop of water, a single key, a lone leaf), provide a **rich atmosphere**, interplay of lighting, and framing that enhances storytelling.  \n- **Focus on depth, detail, and artistic impact** rather than excessive complexity.  \n- **NO TEXT:** Do not include any legible text, words, logos, or symbols anywhere in the scene . The blurred sign should show *shape* but no readable text.\n- **NO PEOPLE:** The scene must be completely devoid of people.\n- **STYLE:** Strictly photorealistic. Avoid illustrations, cartoons, paintings, or stylized effects.\n\nA well-crafted prompt should now include:\n- **Technical Details:** Camera effects like **bokeh, depth of field, contrast**, or lens distortion to make the image feel real.  \n- **Additional Elements:** Small but meaningful details that **enhance interest without overwhelming the scene**. \n\nExample Prompts\n\n-- **Name** Coffee Station **Prompt** Realistic abandoned cart: steaming coffee cups beside tipped sugar dispenser, opening time sign blurred. No text.\n\nRespond ONLY in this exact JSON format:\n\n[\n  {\n    \"Name\": \"Example A\",\n    \"Prompt\": \"Prompt A\"\n  },\n  {\n    \"Name\": \"Example B\",\n    \"Prompt\": \"Prompt B\"\n  }\n]\n\n\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -1040,
+        60
+      ],
+      "id": "9efb9da4-72b1-43e5-81eb-0668fead27a5",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $('Basic LLM Chain1').first().json.text;\n\n// Parse the stringified JSON\nconst parsed = JSON.parse(raw);\n\n// Now return it as an array of items\nreturn parsed.map(item => ({\n  json: {\n    Name: item.Name,\n    Prompt: item.Prompt\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        60
+      ],
+      "id": "8c7320a9-1547-4a2e-a58f-8e1898674139",
+      "name": "Code5",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://get1.imglarger.com/api/UpscalerNew/CheckStatusNew",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"code\":\"{{ $('Request Upscaler1').item.json.data.code }}\",\"scaleRadio\":2}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -440,
+        1580
+      ],
+      "id": "50e0ee7e-0533-4514-98ed-3150cae35d1e",
+      "name": "HTTP CheckStatus1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://get1.imglarger.com/api/UpscalerNew/UploadNew",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9,id;q=0.8"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Origin",
+              "value": "https://imgupscaler.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://imgupscaler.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "myfile",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "scaleRadio",
+              "value": "2"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1260,
+        1660
+      ],
+      "id": "27440698-ed55-4835-9447-cc97f84604ec",
+      "name": "Request Upscaler1"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -660,
+        1660
+      ],
+      "id": "49a42399-979d-4740-b3b3-f30659f74b30",
+      "name": "Wait3",
+      "webhookId": "74987e0f-1056-4735-aaed-7513bd3e096c"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('HTTP CheckStatus1').item.json.data.downloadUrls[0] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br, zstd"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9,id;q=0.8"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Host",
+              "value": "get1.imglarger.com"
+            },
+            {
+              "name": "Origin",
+              "value": "https://imgupscaler.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://imgupscaler.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "=data"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        1660
+      ],
+      "id": "9de33d3e-2e00-446c-8a72-c1040b20cf96",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac87e329-a552-48ea-a160-bb7589ceaad6",
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -220,
+        1660
+      ],
+      "id": "2d36f92f-ef5c-422f-b61f-05c9fb9c1ab1",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Upscale processing wait 1 minutes",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -960,
+        1660
+      ],
+      "id": "e19cd94d-1010-4f42-84e2-a97861180b11",
+      "name": "Telegram7",
+      "webhookId": "298bfae7-2d15-497a-afdd-7fe48f267012",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "=upscaler.{{ $('HTTP Request3').item.json.data.imagemimetype }}"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        1660
+      ],
+      "id": "2d6b1427-94c2-427a-ac37-938f6b6c5815",
+      "name": "Telegram8",
+      "webhookId": "8b36fde3-f436-4d16-8f00-8fe6c0909c4c",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "47afe844-e311-4cc9-81b4-fdfe78025181",
+              "name": "message.text",
+              "value": "={{ $('Telegram Trigger').item.json.message.text.split(' ').slice(1).join(' ') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1260,
+        60
+      ],
+      "id": "af39668c-6639-48be-9ac5-1cada04bf716",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "db1975f3-5acf-4f23-bce4-c7c826f8f55c",
+              "leftValue": "={{ $json.inlineData }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -440,
+        1900
+      ],
+      "id": "36f3e042-91b7-4df7-8a46-8c19b06bb980",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "candidates[0].content.parts",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        1900
+      ],
+      "id": "f7499a20-f41d-4052-8cbb-730cac987fe2",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "inlineData.data",
+        "options": {
+          "fileName": "image",
+          "mimeType": "={{ $json.inlineData.mimeType }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -220,
+        1900
+      ],
+      "id": "e9cac7d8-f4d9-48b4-82b0-57c6b0225a9b",
+      "name": "Convert to File3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"{{ $('Telegram Trigger').item.json.message.text }}\"\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"responseModalities\": [\n      \"TEXT\",\n      \"IMAGE\"\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -960,
+        2000
+      ],
+      "id": "07f96ea5-8da9-420e-bf06-503ad525f059",
+      "name": "HTTP Request5",
+      "retryOnFail": true,
+      "notesInFlow": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyCy9ykmvIiWsbGcif1C1rzIk02OlXsu0so"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"Kamu adalah asisten untuk analisa gambar dan merubahnya jadi prompt, tuliskan secara detail prompt gambarnya tanpa disingkat dari detil ini dalam bahasa Inggris: {{ $('Edit Fields2').item.json.message.text }} \\n\\n PENTING: Hanya berikan response hasil prompt\"\n        },\n        {\n          \"inline_data\": {\n            \"mime_type\": \"image/jpeg\",\n            \"data\": \"{{ $('Extract from File').item.json.data }}\"\n          }\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"responseModalities\": [\n      \"TEXT\",\n      \"IMAGE\"\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -660,
+        2300
+      ],
+      "id": "249aa3cf-ef7a-4980-84ea-006de6afd529",
+      "name": "HTTP Request6",
+      "retryOnFail": false,
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Generate image error",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -660,
+        2100
+      ],
+      "id": "0e955ded-bdb9-4ef1-9992-9e93f35487d8",
+      "name": "Telegram9",
+      "webhookId": "298bfae7-2d15-497a-afdd-7fe48f267012",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1900
+      ],
+      "id": "d65e6b4c-310e-46e6-92f5-16d4480e3220",
+      "name": "Telegram10",
+      "webhookId": "8b36fde3-f436-4d16-8f00-8fe6c0909c4c",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "47afe844-e311-4cc9-81b4-fdfe78025181",
+              "name": "message.text",
+              "value": "={{ $('Telegram Trigger').item.json.message.caption.split(' ').slice(1).join(' ') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -960,
+        2300
+      ],
+      "id": "c8f257cb-ec8c-4a1c-b3b3-d6d4069ae707",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -1260,
+        2300
+      ],
+      "id": "05af2c55-2e5f-4c82-b239-d30a1743c405",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=`{{ $json.candidates[0].content.parts[0].text }}`",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -440,
+        2300
+      ],
+      "id": "d5204477-129e-445b-afe6-600f0404dd47",
+      "name": "Telegram11",
+      "webhookId": "298bfae7-2d15-497a-afdd-7fe48f267012",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=📸 Generate Gambar\nGunakan perintah `Generate ` lalu dilanjutkan dengan detail gambar.\nContoh:\n`Generate gambar yang bertemakan Halloween`\n\n🖼️ Gambar ke Prompt\nKirim gambar dengan caption `/prompt ` untuk mendapatkan ide prompt detail berdasarkan gaya gambar tersebut.\nContoh:\n`/prompt buatkan prompt tema sama namun hasilnya unik`\n\n🧠 Generate Banyak Prompts\nGunakan perintah `/generate ` lalu dilanjutkan ingin membuat prompts apa.\nContoh:\n`/generate 10 prompts about cats`\n\n⚙️ Menjalankan Whisk Generator\nGunakan perintah:\n`/startwhisk` → hanya proses generate\n`/upscale` → proses generate + upscale\n`/upscaler` → masukan gambar di caption masukan perintah ini\n\n🛠️ Melakukan Config Session\nGunakan perintah `/config ` lalu dilanjutkan dengan session yang diambil dari Whisk.\nContoh:\n`/config \nWorkflowID= xxx \nSessionID= xxx \nToken= Bearer xxx`",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1260,
+        2500
+      ],
+      "id": "8639e658-d7e1-48d6-8037-1206d47664a0",
+      "name": "Telegram12",
+      "webhookId": "298bfae7-2d15-497a-afdd-7fe48f267012",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendChatAction",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1260,
+        2000
+      ],
+      "id": "ffe30f18-bcf7-4fa2-a353-e57eab0e6491",
+      "name": "Telegram13",
+      "webhookId": "45feb779-7871-48e9-b44f-49c3b4d17226",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Generate image error",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -220,
+        700
+      ],
+      "id": "ba9c6174-bf29-4ca3-80b8-2dda9add976f",
+      "name": "Telegram14",
+      "webhookId": "298bfae7-2d15-497a-afdd-7fe48f267012",
+      "credentials": {
+        "telegramApi": {
+          "id": "4wTgCkfmQ9QgyOLY",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# EDIT"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        240
+      ],
+      "id": "46e2aa5c-036b-4560-982c-da35010497fb",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 380
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        140
+      ],
+      "id": "19578673-c973-469a-9e02-255113cd7878",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        160,
+        440
+      ],
+      "id": "c3282183-423d-4ee4-ab68-287fc4a46ee5",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        600
+      ],
+      "id": "b1af9a0d-47b4-44b2-aeb3-4b9364bb955b",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        1200
+      ],
+      "id": "65f690fa-e894-4ca5-a157-950c11b28f03",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        1180
+      ],
+      "id": "af33f85f-0858-4fb6-9711-b3fa0c1f5138",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        1220
+      ],
+      "id": "9c41bfc1-fdc9-439e-9ec6-7b095f918d67",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1920
+      ],
+      "id": "0764f371-41b8-4c7b-8c9c-fd7ee585c594",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1760,
+        1400
+      ],
+      "id": "6b63c2af-4bc9-4b5d-916e-434d67900c0f",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "# EDIT",
+        "height": 220,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        940
+      ],
+      "id": "bb9ada71-316c-47b3-ace2-d9e5c6e7dfee",
+      "name": "Sticky Note9"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Session",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Session1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Request Upscaler1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram13",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Crypto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Update Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto1": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP CheckStatus": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Request Upscaler": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP CheckStatus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Update Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Session": {
+      "main": [
+        [
+          {
+            "node": "Get Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Prompts": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Session": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status": {
+      "main": [
+        [
+          {
+            "node": "Telegram6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Request Upscaler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Update Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Prompts1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Session1": {
+      "main": [
+        [
+          {
+            "node": "Telegram4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram4": {
+      "main": [
+        [
+          {
+            "node": "Get Prompts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram5": {
+      "main": [
+        [
+          {
+            "node": "Code5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram6": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Telegram5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP CheckStatus1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Request Upscaler1": {
+      "main": [
+        [
+          {
+            "node": "Telegram7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "HTTP CheckStatus1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram7": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Telegram8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File3": {
+      "main": [
+        [
+          {
+            "node": "Telegram10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request6": {
+      "main": [
+        [
+          {
+            "node": "Telegram11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram13": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7946100c-a755-4969-a7cc-278ac55352ae",
+  "meta": {
+    "instanceId": "9f304bebb9b1e8d1b1c87d44a2f86c8af8fe283d4241fe57aab3ccb8f76fa071"
+  },
+  "id": "P4EkB1u60FuM4LfB",
+  "tags": []
+}
