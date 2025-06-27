@@ -4,6 +4,7 @@ This repository provides instructions and workflows for restoring your n8n workf
 
 Template Spreadsheets Prompts https://docs.google.com/spreadsheets/d/1-xP4ihuQPBkPAQP9oQcEjRU9OooX8kP4bXht1U2soXU
 
+Template Spreadsheets Bot Telegram https://docs.google.com/spreadsheets/d/1OKECNjNZW3f8hEgf2Hf4bw7CwqB8I6dmy8zeqjEyFJI
 ## Prerequisites
 
 - **n8n instance** (self-hosted or cloud)
